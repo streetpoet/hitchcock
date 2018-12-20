@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.spstudio.hitchcock.service.access.IPhotoAccessService;
+import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
 import com.spstudio.hitchcock.service.access.impl.PhotoAccessServiceImpl;
 
 @RunWith(SpringRunner.class)
@@ -36,7 +36,7 @@ class PhotoAccessServiceImplTest {
 	}
 	
 	@Autowired
-	IPhotoAccessService service;
+	IPhotoCRUDService service;
 
 	@Test
 	void test() {

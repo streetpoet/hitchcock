@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.spstudio.hitchcock.controller.PhotoController;
 import com.spstudio.hitchcock.entity.Photo;
-import com.spstudio.hitchcock.service.access.IPhotoAccessService;
+import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
 import com.spstudio.hitchcock.service.beauty.IPhotoBeautyService;
 
 @RunWith(SpringRunner.class)
@@ -52,7 +52,7 @@ class PhotoControllerTest {
 	Set<IPhotoBeautyService> photoBeautyServices;
 
 	@MockBean
-	IPhotoAccessService photoAccessService;
+	IPhotoCRUDService photoAccessService;
 	
 	@Autowired
 	MockMvc mvc;

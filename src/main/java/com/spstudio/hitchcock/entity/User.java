@@ -5,8 +5,8 @@ import lombok.Generated;
 
 @Data
 @Generated
-public class Photo {
+public class User {
 
 	private int id;
-	private String title;
+	private String username;
 }

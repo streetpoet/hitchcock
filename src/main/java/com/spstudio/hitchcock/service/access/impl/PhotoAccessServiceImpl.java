@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.spstudio.hitchcock.entity.Photo;
-import com.spstudio.hitchcock.service.access.IPhotoAccessService;
+import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
 
 @Service
-public class PhotoAccessServiceImpl implements IPhotoAccessService{
+public class PhotoAccessServiceImpl implements IPhotoCRUDService{
 
 	@Override
 	public Optional<Photo> loadPhotoById(int id) {

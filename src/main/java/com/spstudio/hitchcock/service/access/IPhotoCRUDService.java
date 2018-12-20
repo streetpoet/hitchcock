@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.spstudio.hitchcock.entity.Photo;
 
-public interface IPhotoAccessService {
+public interface IPhotoCRUDService {
 
 	public Optional<Photo> loadPhotoById(int id);
 }
