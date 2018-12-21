@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spstudio.hitchcock.entity.Photo;
 import com.spstudio.hitchcock.entity.User;
-import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
+import com.spstudio.hitchcock.service.access.impl.IPhotoCRUDService;
 import com.spstudio.hitchcock.service.beauty.IPhotoBeautyService;
 
 @RestController
-@RequestMapping("/api/v1")
-public class PhotoController {
+@RequestMapping(path = "/api/v1", 
+	consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE },
+	produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+public class PhotoBusinessController {
 
 	@Autowired
 	Set<IPhotoBeautyService> photoBeautyServices;
@@ -30,7 +32,7 @@ public class PhotoController {
 	@Autowired
 	IPhotoCRUDService photoAccessService;
 
-	@GetMapping(path = "/photo/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@GetMapping(path = "/photos/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Photo> getPhoto(@PathVariable("id") int id) {
 
 		Optional<Photo> optionalPhoto = photoAccessService.loadPhotoById(id);
@@ -41,7 +43,7 @@ public class PhotoController {
 		Photo photo = optionalPhoto.get();
 		Iterator<IPhotoBeautyService> photoBeautyServiceIterator = photoBeautyServices.iterator();
 		while (photoBeautyServiceIterator.hasNext()) {
-			photoBeautyServiceIterator.next().updatePhoto(photo); 
+			photoBeautyServiceIterator.next().updatePhoto(photo);
 		}
 
 		return ResponseEntity.ok(photo);

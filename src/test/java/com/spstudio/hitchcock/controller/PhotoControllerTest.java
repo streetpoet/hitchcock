@@ -23,13 +23,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.spstudio.hitchcock.controller.PhotoController;
+import com.spstudio.hitchcock.controller.PhotoBusinessController;
 import com.spstudio.hitchcock.entity.Photo;
-import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
+import com.spstudio.hitchcock.service.access.impl.IPhotoCRUDService;
 import com.spstudio.hitchcock.service.beauty.IPhotoBeautyService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = {PhotoController.class})
+@WebMvcTest(controllers = {PhotoBusinessController.class})
 class PhotoControllerTest {
 
 	@BeforeAll

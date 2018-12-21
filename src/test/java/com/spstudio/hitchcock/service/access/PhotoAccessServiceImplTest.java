@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.spstudio.hitchcock.service.access.IPhotoCRUDService;
-import com.spstudio.hitchcock.service.access.impl.PhotoAccessServiceImpl;
+import com.spstudio.hitchcock.service.access.impl.IPhotoCRUDService;
+import com.spstudio.hitchcock.service.access.impl.PhotoCRUDServiceImpl;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = {PhotoAccessServiceImpl.class})
+@WebMvcTest(controllers = {PhotoCRUDServiceImpl.class})
 class PhotoAccessServiceImplTest {
 
 	@BeforeAll
