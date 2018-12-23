@@ -1,4 +1,4 @@
-package com.spstudio.hitchcock.service.user;
+package com.spstudio.hitchcock.service.user.impl;
 
 import java.util.Optional;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spstudio.hitchcock.entity.User;
 import com.spstudio.hitchcock.repository.UserRepository;
+import com.spstudio.hitchcock.service.user.IUserAccountService;
 
 @Service
 public class UserAccountServiceImpl implements IUserAccountService {
@@ -20,6 +21,11 @@ public class UserAccountServiceImpl implements IUserAccountService {
 			return Optional.empty();
 		}
 		return Optional.ofNullable(userRepository.save(user));
+	}
+
+	@Override
+	public Optional<User> loadUserById(long userId) {
+		return userRepository.findById(userId);
 	}
 
 }

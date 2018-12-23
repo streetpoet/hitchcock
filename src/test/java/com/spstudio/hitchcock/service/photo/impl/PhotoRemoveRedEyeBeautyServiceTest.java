@@ -1,4 +1,4 @@
-package com.spstudio.hitchcock.service.beauty;
+package com.spstudio.hitchcock.service.photo.impl;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -7,14 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.spstudio.hitchcock.service.beauty.impl.PhotoRemoveRedEyeService;
+import com.spstudio.hitchcock.entity.Photo;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = {PhotoRemoveRedEyeService.class})
-class PhotoRemoveRedEyeServiceTest {
+@SpringBootTest(classes = { PhotoRemoveRedEyeBeautyService.class }, webEnvironment = WebEnvironment.NONE)
+class PhotoRemoveRedEyeBeautyServiceTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,13 +32,13 @@ class PhotoRemoveRedEyeServiceTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
-	@Autowired
-	IPhotoBeautyService service;
 
+	@Autowired
+	PhotoRemoveRedEyeBeautyService service;
+	
 	@Test
-	void testUpdatePhoto() {
-		service.updatePhoto(null);
+	void test() {
+		service.beautifyPhoto(new Photo());
 	}
 
 }

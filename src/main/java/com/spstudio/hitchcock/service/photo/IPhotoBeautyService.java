@@ -1,8 +1,8 @@
-package com.spstudio.hitchcock.service.beauty;
+package com.spstudio.hitchcock.service.photo;
 
 import com.spstudio.hitchcock.entity.Photo;
 
 public interface IPhotoBeautyService {
 
-	public void updatePhoto(Photo photo);
+	public void beautifyPhoto(Photo photo);
 }

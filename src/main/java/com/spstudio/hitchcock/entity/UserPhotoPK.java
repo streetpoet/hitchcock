@@ -6,9 +6,11 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.Generated;
 
 @Embeddable
 @Data
+@Generated
 public class UserPhotoPK implements Serializable{
 
 	/**
@@ -17,8 +19,8 @@ public class UserPhotoPK implements Serializable{
 	private static final long serialVersionUID = -667688409394985692L;
 
 	@NotNull
-	private final Long userId;
+	private Long userId;
 	
 	@NotNull
-	private final Long photoId;
+	private Long photoId;
 }

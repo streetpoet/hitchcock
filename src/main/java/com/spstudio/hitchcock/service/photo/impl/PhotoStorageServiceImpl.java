@@ -1,4 +1,4 @@
-package com.spstudio.hitchcock.service.photo;
+package com.spstudio.hitchcock.service.photo.impl;
 
 import java.util.Optional;
 
@@ -13,9 +13,10 @@ import com.spstudio.hitchcock.entity.UserPhotoRef;
 import com.spstudio.hitchcock.repository.PhotoRepository;
 import com.spstudio.hitchcock.repository.UserPhotoRefRepository;
 import com.spstudio.hitchcock.repository.UserRepository;
+import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 
 @Service
-public class UserPhotoServiceImpl implements IUserPhotoService {
+public class PhotoStorageServiceImpl implements IPhotoStorageService {
 
 	@Autowired
 	UserRepository userRepository;
@@ -30,14 +31,22 @@ public class UserPhotoServiceImpl implements IUserPhotoService {
 	@Override
 	public Optional<UserPhotoRef> savePhotoForUser(long userId, Photo photo) {
 		Optional<User> optionalUser = userRepository.findById(userId);
-		if (optionalUser.isPresent()) {
+		if (!optionalUser.isPresent()) {
 			return Optional.empty();
 		}
 		Photo savedPhoto = photoRepository.save(photo);
 		UserPhotoRef userPhotoRef = new UserPhotoRef();
 		userPhotoRef.setEnabled(true);
-		userPhotoRef.setId(new UserPhotoPK(userId, savedPhoto.getId()));
+		UserPhotoPK primaryKey = new UserPhotoPK();
+		primaryKey.setUserId(userId);
+		primaryKey.setPhotoId(savedPhoto.getId());
+		userPhotoRef.setId(primaryKey);
 		return Optional.ofNullable(userPhotoRefRepository.save(userPhotoRef));
+	}
+
+	@Override
+	public Optional<Photo> loadPhotoById(long photoId) {
+		return photoRepository.findById(photoId);
 	}
 
 }
