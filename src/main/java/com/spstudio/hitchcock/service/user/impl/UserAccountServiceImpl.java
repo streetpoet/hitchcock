@@ -20,6 +20,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		if (userRepository.findByUsername(user.getUsername()).isPresent()) {
 			return Optional.empty();
 		}
+		
 		return Optional.ofNullable(userRepository.save(user));
 	}
 
