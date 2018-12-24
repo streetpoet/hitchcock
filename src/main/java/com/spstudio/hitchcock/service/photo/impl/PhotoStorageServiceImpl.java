@@ -29,7 +29,7 @@ public class PhotoStorageServiceImpl implements IPhotoStorageService {
 
 	@Transactional
 	@Override
-	public Optional<UserPhotoRef> savePhotoForUser(long userId, Photo photo) {
+	public Optional<Photo> savePhotoForUser(long userId, Photo photo) {
 		Optional<User> optionalUser = userRepository.findById(userId);
 		if (!optionalUser.isPresent()) {
 			return Optional.empty();
@@ -41,7 +41,8 @@ public class PhotoStorageServiceImpl implements IPhotoStorageService {
 		primaryKey.setUserId(userId);
 		primaryKey.setPhotoId(savedPhoto.getId());
 		userPhotoRef.setId(primaryKey);
-		return Optional.ofNullable(userPhotoRefRepository.save(userPhotoRef));
+		userPhotoRefRepository.save(userPhotoRef);
+		return Optional.ofNullable(savedPhoto);
 	}
 
 	@Override

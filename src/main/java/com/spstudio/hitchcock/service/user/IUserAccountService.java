@@ -7,5 +7,6 @@ import com.spstudio.hitchcock.entity.User;
 public interface IUserAccountService {
 
 	public Optional<User> createUserAccount(User user);
+
 	public Optional<User> loadUserById(long userId);
 }

@@ -14,7 +14,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public Optional<User> createUserAccount(User user) {
 		if (userRepository.findByUsername(user.getUsername()).isPresent()) {

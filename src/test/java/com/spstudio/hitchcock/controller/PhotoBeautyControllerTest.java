@@ -1,11 +1,12 @@
 package com.spstudio.hitchcock.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Optional;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.spstudio.hitchcock.service.photo.IPhotoBeautyService;
+import com.spstudio.hitchcock.entity.Photo;
+import com.spstudio.hitchcock.service.photo.impl.PhotoAutoLightBeautyService;
 import com.spstudio.hitchcock.service.photo.impl.PhotoStorageServiceImpl;
 
 @RunWith(SpringRunner.class)
@@ -47,7 +49,7 @@ class PhotoBeautyControllerTest {
 	MockMvc mvc;
 
 	@MockBean
-	Set<IPhotoBeautyService> photoBeautyServices;
+	PhotoAutoLightBeautyService autoLightBeautyService;
 
 	@MockBean
 	PhotoStorageServiceImpl photoStorageService;
@@ -55,12 +57,18 @@ class PhotoBeautyControllerTest {
 	@Test
 	void beautifyPhotoWithNotFound() throws Exception {
 		given(photoStorageService.loadPhotoById(1L)).willReturn(Optional.empty());
-//		given(photoBeautyServices.iterator()).willReturn(Collections.<IPhotoBeautyService>emptySet().iterator());
 
-		mvc.perform(put("/api/v1/photos/{photoId}/beauty", 1)
-				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-				.andExpect(status().isNotFound());
+		mvc.perform(put("/api/v1/photos/{photoId}/beauty", 1).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isNotFound());
+	}
+
+	@Test
+	void beautifyPhotoWithHappyPath() throws Exception {
+		given(photoStorageService.loadPhotoById(1L)).willReturn(Optional.of(new Photo()));
+		willDoNothing().given(autoLightBeautyService).beautifyPhoto(any(Photo.class));
+
+		mvc.perform(put("/api/v1/photos/{photoId}/beauty", 1).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isOk());
 	}
 
 }

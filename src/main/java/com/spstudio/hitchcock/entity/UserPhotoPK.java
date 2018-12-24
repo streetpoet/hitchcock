@@ -11,7 +11,7 @@ import lombok.Generated;
 @Embeddable
 @Data
 @Generated
-public class UserPhotoPK implements Serializable{
+public class UserPhotoPK implements Serializable {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class UserPhotoPK implements Serializable{
 
 	@NotNull
 	private Long userId;
-	
+
 	@NotNull
 	private Long photoId;
 }

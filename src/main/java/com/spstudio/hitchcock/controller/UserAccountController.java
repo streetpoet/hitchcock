@@ -15,35 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spstudio.hitchcock.entity.Photo;
 import com.spstudio.hitchcock.entity.User;
-import com.spstudio.hitchcock.entity.UserPhotoRef;
 import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 import com.spstudio.hitchcock.service.user.IUserAccountService;
 
 @RestController
-@RequestMapping(path = "/api/v1", 
-	consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, 
-	produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+@RequestMapping(path = "/api/v1", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
+		MediaType.APPLICATION_JSON_UTF8_VALUE })
 public class UserAccountController {
 
 	@Autowired
 	IUserAccountService userAccountService;
-	
+
 	@Autowired
 	IPhotoStorageService photoStorageService;
 
 	@PostMapping(path = "/users")
-	public ResponseEntity<User> createUser(@RequestBody @Validated User user){
+	public ResponseEntity<User> createUser(@RequestBody @Validated User user) {
 		Optional<User> optionalUser = userAccountService.createUserAccount(user);
 		if (!optionalUser.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(optionalUser.get());
 	}
-	
-	@PostMapping(path = "/users/{userId}/photos}")
-	public ResponseEntity<UserPhotoRef> retrievePhoto(@PathVariable("userId") long userId,
-			@RequestBody @Validated Photo photo) {
-		Optional<UserPhotoRef> optionalResult = photoStorageService.savePhotoForUser(userId, photo);
+
+	@PostMapping(path = "/users/{userId}/photos")
+	public ResponseEntity<Photo> createPhoto(@PathVariable("userId") long userId, @RequestBody @Validated Photo photo) {
+		Optional<Photo> optionalResult = photoStorageService.savePhotoForUser(userId, photo);
 		if (!optionalResult.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}

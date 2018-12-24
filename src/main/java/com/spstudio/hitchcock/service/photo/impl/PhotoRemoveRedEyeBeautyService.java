@@ -11,7 +11,7 @@ import com.spstudio.hitchcock.service.photo.IPhotoBeautyService;
 public class PhotoRemoveRedEyeBeautyService implements IPhotoBeautyService {
 
 	Logger logger = LoggerFactory.getLogger(PhotoRemoveRedEyeBeautyService.class);
-	
+
 	@Override
 	public void beautifyPhoto(Photo photo) {
 		logger.info("remove red eye applied");

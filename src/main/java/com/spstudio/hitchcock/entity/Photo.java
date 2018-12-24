@@ -16,7 +16,7 @@ public class Photo {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@NotEmpty
 	private String filename;
 }

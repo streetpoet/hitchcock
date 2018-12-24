@@ -8,10 +8,10 @@ import com.spstudio.hitchcock.entity.Photo;
 import com.spstudio.hitchcock.service.photo.IPhotoBeautyService;
 
 @Service
-public class PhotoAutoLightBeautyService implements IPhotoBeautyService{
+public class PhotoAutoLightBeautyService implements IPhotoBeautyService {
 
 	Logger logger = LoggerFactory.getLogger(PhotoAutoLightBeautyService.class);
-	
+
 	@Override
 	public void beautifyPhoto(Photo photo) {
 		logger.info("auto light applied. ");

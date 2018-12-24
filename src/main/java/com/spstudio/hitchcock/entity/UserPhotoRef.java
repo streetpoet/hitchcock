@@ -13,6 +13,6 @@ public class UserPhotoRef {
 
 	@EmbeddedId
 	private UserPhotoPK id;
-	
+
 	private boolean enabled;
 }

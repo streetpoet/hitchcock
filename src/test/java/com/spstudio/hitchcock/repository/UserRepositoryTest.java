@@ -18,17 +18,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.spstudio.hitchcock.entity.User;
 import com.spstudio.hitchcock.testutil.UserInstanceFactory;
 
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 class UserRepositoryTest {
 
 	@Autowired
 	private TestEntityManager entityManager;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -49,12 +48,12 @@ class UserRepositoryTest {
 	void testFindByUsername() {
 		Optional<User> optionalUser = userRepository.findByUsername("william");
 		assertThat(optionalUser).isNotPresent();
-		
+
 		userRepository.save(UserInstanceFactory.createUserInstanceWithUsername("william"));
 		optionalUser = userRepository.findByUsername("william");
 		assertThat(optionalUser).isPresent();
 		assertThat(optionalUser.get()).hasFieldOrPropertyWithValue("username", "william");
-		
+
 		entityManager.remove(optionalUser.get());
 		optionalUser = userRepository.findByUsername("william");
 		assertThat(optionalUser).isNotPresent();

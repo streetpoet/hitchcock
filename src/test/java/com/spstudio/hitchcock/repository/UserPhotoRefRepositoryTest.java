@@ -52,10 +52,10 @@ class UserPhotoRefRepositoryTest {
 		primaryKey.setUserId(1L);
 		primaryKey.setPhotoId(1L);
 		ref.setId(primaryKey);
-		
+
 		UserPhotoRef savedRef = userPhotoRefRepository.save(ref);
 		assertThat(savedRef).isNotNull();
-		
+
 		Optional<UserPhotoRef> optionalRef = userPhotoRefRepository.findById(primaryKey);
 		assertThat(optionalRef).isPresent();
 		assertThat(optionalRef.get()).hasFieldOrPropertyWithValue("enabled", true);

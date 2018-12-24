@@ -61,7 +61,7 @@ class PhotoStorageServiceImplTest {
 	@Test
 	void savePhotoForUserWithUserNotFound() {
 		given(userRepository.findById(anyLong())).willReturn(Optional.empty());
-		Optional<UserPhotoRef> optionalResult = photoService.savePhotoForUser(1L, new Photo());
+		Optional<Photo> optionalResult = photoService.savePhotoForUser(1L, new Photo());
 		assertThat(optionalResult).isNotPresent();
 	}
 
@@ -76,8 +76,14 @@ class PhotoStorageServiceImplTest {
 
 		given(userPhotoRefRepository.save(any(UserPhotoRef.class))).willReturn(new UserPhotoRef());
 
-		Optional<UserPhotoRef> optionalResult = photoService.savePhotoForUser(100L, new Photo());
+		Optional<Photo> optionalResult = photoService.savePhotoForUser(100L, new Photo());
 		assertThat(optionalResult).isPresent();
+	}
+
+	@Test
+	void loadPhotoById() {
+		given(photoRepository.findById(1L)).willReturn(Optional.of(new Photo()));
+		assertThat(photoService.loadPhotoById(1L)).isPresent();
 	}
 
 }

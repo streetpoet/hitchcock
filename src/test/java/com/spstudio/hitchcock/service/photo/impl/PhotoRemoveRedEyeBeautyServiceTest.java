@@ -35,7 +35,7 @@ class PhotoRemoveRedEyeBeautyServiceTest {
 
 	@Autowired
 	PhotoRemoveRedEyeBeautyService service;
-	
+
 	@Test
 	void test() {
 		service.beautifyPhoto(new Photo());

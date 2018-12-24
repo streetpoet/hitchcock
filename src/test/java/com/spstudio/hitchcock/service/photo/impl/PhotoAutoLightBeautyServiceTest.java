@@ -35,7 +35,7 @@ class PhotoAutoLightBeautyServiceTest {
 
 	@Autowired
 	PhotoAutoLightBeautyService service;
-	
+
 	@Test
 	void test() {
 		service.beautifyPhoto(new Photo());

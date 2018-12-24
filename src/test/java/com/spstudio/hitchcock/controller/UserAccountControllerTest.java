@@ -1,6 +1,8 @@
 package com.spstudio.hitchcock.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -21,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.spstudio.hitchcock.entity.Photo;
 import com.spstudio.hitchcock.entity.User;
 import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 import com.spstudio.hitchcock.service.user.IUserAccountService;
@@ -81,6 +84,33 @@ class UserAccountControllerTest {
 				.andExpect(status().isCreated())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(content().json("{\"username\": \"william\"}", false));
+		// @formatter:on
+	}
+
+	@Test
+	void createPhotoWithPhotoNotFound() throws Exception {
+		given(photoStorageService.savePhotoForUser(eq(1L), any(Photo.class))).willReturn(Optional.empty());
+		// @formatter:off
+		mvc.perform(post("/api/v1/users/{userId}/photos", 1L)
+				.content("{\"filename\": \"profile.jpg\"}")
+				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(status().isNotFound());
+		// @formatter:on
+	}
+
+	@Test
+	void createPhotoWithHappyPath() throws Exception {
+		Photo mockedPhoto = new Photo();
+		mockedPhoto.setFilename("profile.jpg");
+		given(photoStorageService.savePhotoForUser(anyLong(), any(Photo.class))).willReturn(Optional.of(mockedPhoto));
+		// @formatter:off
+		mvc.perform(post("/api/v1/users/{userId}/photos", 1L)
+				.content("{\"filename\": \"profile.jpg\"}")
+				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(status().isCreated())
+				.andExpect(content().json("{\"filename\": \"profile.jpg\"}", false));
 		// @formatter:on
 	}
 
