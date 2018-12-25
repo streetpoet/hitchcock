@@ -17,8 +17,7 @@ import com.spstudio.hitchcock.service.photo.IPhotoBeautyService;
 import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 
 @RestController
-@RequestMapping(path = "/api/v1", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
-		MediaType.APPLICATION_JSON_UTF8_VALUE })
+@RequestMapping(path = "/api/v1", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 public class PhotoBeautyController {
 
 	@Autowired
