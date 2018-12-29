@@ -1,5 +1,7 @@
 package com.spstudio.hitchcock.service.extra.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,7 +45,7 @@ class UserIDCardAuthenticateServiceImplWilliamCustomizedTest {
 	
 	@Test
 	void test() {
-		noPurposeBean.printVersion();
+		assertThat(noPurposeBean.printVersion()).isEqualToIgnoringCase("v1.0");
 	}
 
 }
