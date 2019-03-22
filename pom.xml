@@ -61,13 +61,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- test extension -->
-		<dependency>
-			<groupId>com.spstudio</groupId>
-			<artifactId>william-spring-test-extension</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<!-- Junit5 related -->
 
 		<dependency>

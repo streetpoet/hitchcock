@@ -10,18 +10,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 import com.spstudio.hitchcock.entity.User;
 import com.spstudio.hitchcock.testutil.UserInstanceFactory;
 
-@RunWith(SpringRunner.class)
 @RestClientTest(UserIDCardAuthenticateServiceImpl.class)
 @AutoConfigureWebClient(registerRestTemplate = true)
 class UserIDCardAuthenticateServiceImplTest {

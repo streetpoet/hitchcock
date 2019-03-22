@@ -15,12 +15,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.spstudio.hitchcock.entity.Photo;
@@ -29,7 +27,6 @@ import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 import com.spstudio.hitchcock.service.user.IUserAccountService;
 import com.spstudio.hitchcock.testutil.UserInstanceFactory;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(controllers = { UserAccountController.class })
 class UserAccountControllerTest {
 

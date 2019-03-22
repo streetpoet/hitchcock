@@ -9,16 +9,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.spstudio.hitchcock.entity.UserPhotoPK;
 import com.spstudio.hitchcock.entity.UserPhotoRef;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 class UserPhotoRefRepositoryTest {
 
