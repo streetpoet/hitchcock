@@ -18,6 +18,9 @@ import com.spstudio.hitchcock.entity.User;
 import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 import com.spstudio.hitchcock.service.user.IUserAccountService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = { "User Domain" })
 @RestController
 @RequestMapping(path = "/api/v1", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
 		MediaType.APPLICATION_JSON_UTF8_VALUE })
