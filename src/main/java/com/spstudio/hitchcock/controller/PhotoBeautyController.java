@@ -16,6 +16,9 @@ import com.spstudio.hitchcock.entity.Photo;
 import com.spstudio.hitchcock.service.photo.IPhotoBeautyService;
 import com.spstudio.hitchcock.service.photo.IPhotoStorageService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = { "Photo Domain" })
 @RestController
 @RequestMapping(path = "/api/v1", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 public class PhotoBeautyController {
